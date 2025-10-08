@@ -16,8 +16,11 @@ You need to install on linux server next package:
 
 Full build:
 ```bash=
-cd /opt && git clone https://github.com/bysmaks/LinGam && cd LinGam
-chmod +x builder.sh 
+cd /opt && 
+mkdir shells &&
+git clone https://github.com/bysmaks/LinGam && 
+cd LinGam
+chmod +x builder.sh &&
 ./builder.sh
 ```
 
