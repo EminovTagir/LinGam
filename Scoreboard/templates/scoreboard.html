@@ -77,7 +77,7 @@
     <h3>How to Submit Your Solutions</h3>
     <p>Connect to tasks via SSH and complete them. When you successfully solve a task, it will automatically be tracked!</p>
     <p style="margin-top: 0.5rem;">For manual submission, use the API:</p>
-    <pre style="background: #333; color: #0f0; padding: 1rem; border-radius: 5px; overflow-x: auto; margin-top: 0.5rem;">curl -X POST http://scoreboard:5000/api/complete_task \
+    <pre style="background: #333; color: #0f0; padding: 1rem; border-radius: 5px; overflow-x: auto; margin-top: 0.5rem;">curl -X POST http://YOUR_SERVER_IP:5000/api/complete_task \
   -H "Content-Type: application/json" \
   -d '{"username":"your_username", "task_name":"task_name", "flag":"your_flag"}'</pre>
 </div>

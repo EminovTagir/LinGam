@@ -78,7 +78,7 @@ curl -X POST http://localhost:5000/api/complete_task \
 
 ## Development
 
-To run locally:
+To run locally for development:
 
 ```bash
 cd Scoreboard
@@ -87,3 +87,16 @@ python app.py
 ```
 
 The app will be available at `http://localhost:5000`.
+
+## Production Deployment
+
+The scoreboard runs on the host network when deployed via `builder.sh`, making it accessible at:
+```
+http://YOUR_SERVER_IP:5000
+```
+
+**Note**: The default setup uses Flask's development server. For production use, consider using a WSGI server like Gunicorn:
+```bash
+pip install gunicorn
+gunicorn -w 4 -b 0.0.0.0:5000 app:app
+```

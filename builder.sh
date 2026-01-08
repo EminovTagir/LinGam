@@ -3,7 +3,7 @@
 # Create data directory for scoreboard database
 echo "Creating scoreboard data directory..."
 sudo mkdir -p /opt/scoreboard_data
-sudo chmod 777 /opt/scoreboard_data
+sudo chmod 755 /opt/scoreboard_data
 
 # Build and start scoreboard container first
 echo "Building and starting scoreboard..."
