@@ -45,7 +45,7 @@ ssh dothemathin30seconds@server
 pass: dothemathin30seconds
 
 ssh knockknock@server
-pass: dothemathin30seconds
+pass: knockknock
 
 ssh largefile@server
 pass: largefile
