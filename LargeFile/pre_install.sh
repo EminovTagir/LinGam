@@ -11,9 +11,9 @@ if command -v python3 &> /dev/null; then
             fi
         fi
 
-        if [ -f "./generate.py" ]; then
+        if [ -f "./generator.py" ]; then
             echo "Generating data..."
-            python3 generate.py
+            python3 generator.py
             if [ $? -ne 0 ]; then
                 echo "Error generating data."
                 exit 1
