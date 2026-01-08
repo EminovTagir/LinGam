@@ -2,6 +2,10 @@
 __pycache__
 *.pyc
 
+# Scoreboard database
+Scoreboard/instance/
+*.db
+
 # Generated files by pre_install.sh
 */banner.sh
 */main

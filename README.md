@@ -59,3 +59,52 @@ pass: pincode
 ssh projectfiles@server
 pass projectfiles
 ```
+
+## Scoreboard
+
+LinGam now includes a web-based scoreboard to track player progress!
+
+### Access the Scoreboard
+
+After deployment, access the scoreboard at:
+```
+http://your-server:5000
+```
+
+### Features
+
+- **User Registration & Login**: Create an account to track your progress
+- **Real-time Rankings**: See how you rank against other players
+- **Task Progress**: View which tasks you've completed and which remain
+- **Points System**: Each task awards points based on difficulty
+- **Automatic Tracking**: Task completions are automatically recorded
+
+### How to Use
+
+1. **Register**: Visit the scoreboard URL and create an account with a username and password
+2. **Complete Tasks**: Connect to tasks via SSH and solve them as usual
+3. **Submit Completions**: Use the API to submit your task completions
+4. **Track Progress**: View your ranking and completed tasks on the scoreboard
+
+### Submitting Task Completions
+
+When you complete a task, submit it to the scoreboard:
+
+```bash
+curl -X POST http://your-server:5000/api/complete_task \
+  -H "Content-Type: application/json" \
+  -d '{"username":"your_username", "task_name":"task_name", "flag":"your_flag"}'
+```
+
+Replace `your_username` with your scoreboard username and `task_name` with one of:
+- `archives`
+- `banme`
+- `deletefile`
+- `dothemathin30seconds`
+- `knockknock`
+- `largefile`
+- `moldovavirus`
+- `pincode`
+- `projectfiles`
+
+See [Scoreboard/README.md](Scoreboard/README.md) for more details.
