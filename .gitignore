@@ -1,3 +1,10 @@
 .DS_Store
 __pycache__
 *.pyc
+
+# Generated files by pre_install.sh
+*/banner.sh
+*/main
+*/challenges/
+*/challenge/
+*/fail2ban.log
