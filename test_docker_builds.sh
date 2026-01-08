@@ -104,6 +104,14 @@ else
     failed_tests=$((failed_tests + 1))
 fi
 
+# Cleanup Docker images
+echo ""
+log_info "======================================"
+log_info "Cleaning up test Docker images"
+log_info "======================================"
+docker images --format "{{.Repository}}:{{.Tag}}" | grep "^test-" | xargs -r docker rmi > /dev/null 2>&1 || true
+log_info "✓ Cleanup completed"
+
 # Summary
 echo ""
 echo "======================================"

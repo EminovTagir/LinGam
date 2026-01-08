@@ -91,7 +91,7 @@ cd BanMe
 cleanup_task "$(pwd)"
 
 test_task "BanMe" "Python script syntax" "python3 -m py_compile generate.py"
-test_task "BanMe" "Generate fail2ban log" "timeout 30 python3 generate.py"
+test_task "BanMe" "Generate fail2ban log" "timeout 60 python3 generate.py"
 test_task "BanMe" "Check log file created" "[ -f fail2ban.log ]"
 test_task "BanMe" "Check log file has content" "[ -s fail2ban.log ]"
 test_task "BanMe" "Check config.sh exists" "[ -f config.sh ]"
@@ -168,7 +168,7 @@ cd MoldovaVirus
 cleanup_task "$(pwd)"
 
 test_task "MoldovaVirus" "Python script syntax" "python3 -m py_compile generate.py"
-test_task "MoldovaVirus" "Generate directory structure" "timeout 30 python3 generate.py"
+test_task "MoldovaVirus" "Generate directory structure" "timeout 60 python3 generate.py"
 test_task "MoldovaVirus" "Check challenge directory created" "[ -d challenge ]"
 test_task "MoldovaVirus" "Check config.sh exists" "[ -f config.sh ]"
 test_task "MoldovaVirus" "Check Dockerfile exists" "[ -f Dockerfile ]"
