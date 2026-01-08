@@ -1,13 +1,9 @@
 FROM ubuntu:latest
 
-RUN apt-get update && \
-    apt-get install -y gnupg && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C && \
-    apt-get update
-
 # Устанавливаем необходимые пакеты
-RUN apt-get install -y knockd iptables netcat-traditional curl golang 
+RUN apt-get update && \
+    apt-get install -y knockd iptables netcat-traditional curl golang && \
+    rm -rf /var/lib/apt/lists/* 
 
 COPY knockd.conf /etc/knockd.conf
 
