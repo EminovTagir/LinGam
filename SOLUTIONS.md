@@ -249,6 +249,7 @@ Or directly:
 ```
 
 **Flag:** `you flag is super_pin_code_brure` (PIN: 15627)
+*Note: The typos in the flag text are present in the original challenge code.*
 
 ---
 
