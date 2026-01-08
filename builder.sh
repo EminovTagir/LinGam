@@ -22,7 +22,7 @@ for dir in */; do
 
         if [ -f "$dir/pre_install.sh" ]; then
             echo "Running pre_install.sh..."
-            bash "$dir/pre_install.sh"
+            (cd "$dir" && bash pre_install.sh)
             if [ $? -ne 0 ]; then
                 echo "pre_install.sh failed for $taskname."
                 continue
