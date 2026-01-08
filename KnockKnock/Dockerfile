@@ -1,9 +1,9 @@
 FROM ubuntu:latest
 
-# Устанавливаем необходимые пакеты
+# Install required packages
 RUN apt-get update && \
     apt-get install -y knockd iptables netcat-traditional curl golang && \
-    rm -rf /var/lib/apt/lists/* 
+    rm -rf /var/lib/apt/lists/*
 
 COPY knockd.conf /etc/knockd.conf
 
