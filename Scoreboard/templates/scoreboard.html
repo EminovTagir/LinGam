@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% set full_width = true %}
+
+{% block title %}Scoreboard - LinGam{% endblock %}
+
+{% block content %}
+<h2>🏆 Scoreboard</h2>
+
+<div class="grid">
+    <div>
+        <h3>Rankings</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Tasks</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user_score in users_scores %}
+                <tr>
+                    <td>
+                        {% set rank = loop.index %}
+                        <span class="rank-badge {% if rank == 1 %}rank-1{% elif rank == 2 %}rank-2{% elif rank == 3 %}rank-3{% else %}rank-other{% endif %}">
+                            {{ rank }}
+                        </span>
+                    </td>
+                    <td>
+                        {{ user_score.username }}
+                        {% if user_score.username == current_username %}
+                        <span style="color: #667eea;">(You)</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ user_score.tasks_completed or 0 }}</td>
+                    <td><strong>{{ user_score.total_points or 0 }}</strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div>
+        <h3>Tasks</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Points</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>
+                        <strong>{{ task.display_name }}</strong><br>
+                        <small style="color: #666;">{{ task.description }}</small>
+                    </td>
+                    <td>{{ task.points }}</td>
+                    <td>
+                        {% if task.id in completed_task_ids %}
+                        <span class="badge badge-completed">✓ Completed</span>
+                        {% else %}
+                        <span class="badge badge-pending">Pending</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div style="margin-top: 2rem; padding: 1rem; background: #f5f5f5; border-radius: 5px;">
+    <h3>How to Submit Your Solutions</h3>
+    <p>Connect to tasks via SSH and complete them. When you successfully solve a task, it will automatically be tracked!</p>
+    <p style="margin-top: 0.5rem;">For manual submission, use the API:</p>
+    <pre style="background: #333; color: #0f0; padding: 1rem; border-radius: 5px; overflow-x: auto; margin-top: 0.5rem;">curl -X POST http://scoreboard:5000/api/complete_task \
+  -H "Content-Type: application/json" \
+  -d '{"username":"your_username", "task_name":"task_name", "flag":"your_flag"}'</pre>
+</div>
+{% endblock %}

@@ -1,5 +1,38 @@
 #!/bin/bash
 
+# Create data directory for scoreboard database
+echo "Creating scoreboard data directory..."
+sudo mkdir -p /opt/scoreboard_data
+sudo chmod 777 /opt/scoreboard_data
+
+# Build and start scoreboard container first
+echo "Building and starting scoreboard..."
+if [ -d "Scoreboard" ]; then
+    docker build -t scoreboard Scoreboard/ > /dev/null
+    if [ $? -eq 0 ]; then
+        # Stop existing scoreboard container if running
+        docker stop scoreboard 2>/dev/null
+        docker rm scoreboard 2>/dev/null
+        
+        # Start scoreboard container
+        docker run -d --name scoreboard \
+            --network host \
+            -v /opt/scoreboard_data:/app/instance \
+            --restart unless-stopped \
+            scoreboard
+        
+        if [ $? -eq 0 ]; then
+            echo "Scoreboard started successfully on port 5000"
+        else
+            echo "Failed to start scoreboard container"
+        fi
+    else
+        echo "Failed to build scoreboard"
+    fi
+else
+    echo "Scoreboard directory not found, skipping..."
+fi
+
 network_name="isolated_network"
 if docker network ls | grep -q "$network_name"; then
     echo "Network $network_name exists."
